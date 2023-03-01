@@ -1,4 +1,4 @@
-@foreach ($kecamatan as $data)
+@foreach ($management_kecamatan as $data)
     <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full" id="delete-kecamatan{{ $data->id }}">
         <div class="relative w-full h-full max-w-md px-4 md:h-auto">
             <!-- Modal content -->
@@ -14,7 +14,7 @@
                     <svg class="w-16 h-16 mx-auto text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     <h3 class="mt-5 mb-6 text-lg text-gray-500 dark:text-gray-400">Yakin Mau Menghapus Data Kecamatan?</h3>
                     <div class="inline-flex">
-                        <form action="{{ route('kecamatan.destroy', $data->id) }}" method="POST">
+                        <form action="{{ route('management-kecamatan.destroy', $data->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-base inline-flex items-center px-3 py-2.5 text-center mr-2 dark:focus:ring-red-800">Ya, Saya Yakin.</button>

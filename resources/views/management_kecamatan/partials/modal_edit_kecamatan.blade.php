@@ -1,4 +1,4 @@
-@foreach ($kecamatan as $data)
+@foreach ($management_kecamatan as $data)
     <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full" id="editkecamatan{{ $data->id }}" aria-labelledby="editkecamatanLabel{{ $data->id }}">
         <div class="relative w-full h-full max-w-2xl px-4 md:h-auto">
             <!-- Modal content -->
@@ -14,7 +14,7 @@
                 </div>
                 <!-- Modal body -->
                 <div class="p-6 space-y-6">
-                    <form action="{{ route('kecamatan.update', $data->id) }}" method="POST">
+                    <form action="{{ route('management-kecamatan.update', $data->id) }}" method="POST">
                         @csrf
                         @method('patch')
                         <div class="grid grid-cols-6 gap-6">

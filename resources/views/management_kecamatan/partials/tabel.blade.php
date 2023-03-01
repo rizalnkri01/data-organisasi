@@ -20,7 +20,7 @@
                         @php
                             $no = 1
                         @endphp
-                        @foreach ($kecamatan as $data)
+                        @foreach ($management_kecamatan as $data)
                         <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $no++ }}</td>
                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $data->name }}</td>

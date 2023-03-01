@@ -13,7 +13,7 @@
             </div>
             <!-- Modal body -->
             <div class="p-6 space-y-6">
-                <form method="POST" action="{{ route('kecamatan.store') }}">
+                <form method="POST" action="{{ route('management-kecamatan.store') }}">
                     @csrf
                     <div class="grid grid-cols-6 gap-6">
                         <div class="col-span-6">

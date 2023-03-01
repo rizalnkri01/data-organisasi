@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\MediaSocialController;
 use App\Http\Controllers\PimpinanKeduaController;
-use App\Http\Controllers\PimpinanUtamaController;
+use App\Http\Controllers\ManagementPimpinanUtamaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,10 +27,12 @@ Route::get('/dashboard', function () {
 
 Route::get('/media_social', [MediaSocialController::class, 'index'])->name('media_social');
 
-Route::get('/kecamatan', [PimpinanUtamaController::class, 'index'])->name('kecamatan');
-Route::post('/kecamatan', [PimpinanUtamaController::class, 'store'])->name('kecamatan.store');
-Route::patch('/kecamatan/{id}', [PimpinanUtamaController::class, 'update'])->name('kecamatan.update');
-Route::delete('/kecamatan/{id}', [PimpinanUtamaController::class, 'destroy'])->name('kecamatan.destroy');
+Route::get('/ranting', [PimpinanKeduaController::class, 'index'])->name('ranting');
+
+Route::get('/management-kecamatan', [ManagementPimpinanUtamaController::class, 'index'])->name('management-kecamatan');
+Route::post('/management-kecamatan', [ManagementPimpinanUtamaController::class, 'store'])->name('management-kecamatan.store');
+Route::patch('/management-kecamatan/{id}', [ManagementPimpinanUtamaController::class, 'update'])->name('management-kecamatan.update');
+Route::delete('/management-kecamatan/{id}', [ManagementPimpinanUtamaController::class, 'destroy'])->name('management-kecamatan.destroy');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

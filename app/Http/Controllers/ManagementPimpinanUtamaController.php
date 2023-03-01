@@ -6,11 +6,11 @@ use App\Models\PimpinanUtama;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class PimpinanUtamaController extends Controller
+class ManagementPimpinanUtamaController extends Controller
 {
     public function index(Request $request)
     {
-        $title = 'Kecamatan';
+        $title = 'Management Kecamatan';
         $query = $request->query('name');
         
         if ($query) {
@@ -19,9 +19,9 @@ class PimpinanUtamaController extends Controller
             $pagination = PimpinanUtama::orderBy('id', 'desc')->paginate(10);
         }
         
-        return view('kecamatan.index', [
+        return view('management_kecamatan.index', [
             'title' => $title,
-            'kecamatan' => $pagination,
+            'management_kecamatan' => $pagination,
             'query' => $query,
         ]);
     }

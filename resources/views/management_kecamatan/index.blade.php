@@ -61,20 +61,20 @@
         @endif
     
     <!-- Pencarian -->
-    @include('kecamatan.partials.pencarian')
+    @include('management_kecamatan.partials.pencarian')
     
     <!-- Tabel -->
-    @include('kecamatan.partials.tabel')
+    @include('management_kecamatan.partials.tabel')
 
     <!-- Paginasi -->
-    @include('kecamatan.partials.paginasi')
+    @include('management_kecamatan.partials.paginasi')
 
     <!-- Edit Kecamatan -->
-    @include('kecamatan.partials.modal_edit_kecamatan')
+    @include('management_kecamatan.partials.modal_edit_kecamatan')
 
     <!-- Add Kecamatan -->
-    @include('kecamatan.partials.modal_add_kecamatan')
+    @include('management_kecamatan.partials.modal_add_kecamatan')
 
     <!-- Delete Kecamatan -->
-    @include('kecamatan.partials.modal_delete_kecamatan')
+    @include('management_kecamatan.partials.modal_delete_kecamatan')
 </x-app-layouts>
