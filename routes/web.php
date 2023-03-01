@@ -3,6 +3,7 @@
 use App\Http\Controllers\MediaSocialController;
 use App\Http\Controllers\PimpinanKeduaController;
 use App\Http\Controllers\ManagementPimpinanUtamaController;
+use App\Http\Controllers\PimpinanUtamaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,7 +27,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/media_social', [MediaSocialController::class, 'index'])->name('media_social');
-
+Route::get('/kecamatan', [PimpinanUtamaController::class, 'index'])->name('kecamatan');
 Route::get('/ranting', [PimpinanKeduaController::class, 'index'])->name('ranting');
 
 Route::get('/management-kecamatan', [ManagementPimpinanUtamaController::class, 'index'])->name('management-kecamatan');
