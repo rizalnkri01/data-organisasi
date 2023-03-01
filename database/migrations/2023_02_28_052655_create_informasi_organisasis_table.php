@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('informasi_organisasis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('name')->nullable();
-            $table->string('contact')->nullable();
             $table->string('kondisi_organisasi')->nullable();
             $table->string('no_sp')->nullable();
             $table->string('sekretariatan')->nullable();

@@ -64,14 +64,12 @@ class ProfileController extends Controller
         $pimpinan_kedua->fill($request->only('name_pimpinan_kedua'));
         $pimpinan_kedua->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.edit')->with('success', 'Data Berhasil Diubah');
     }
 
     public function update_2(Request $request)
     {
         $validated = $request->validate([
-            'name' => ['nullable', 'string', 'max:255'],
-            'contact' => ['nullable', 'string', 'max:255'],
             'kondisi_organisasi' => ['nullable', 'string', 'max:255'],
             'no_sp' => ['nullable', 'string', 'max:255'],
             'sekretariatan' => ['nullable', 'string', 'max:255'],

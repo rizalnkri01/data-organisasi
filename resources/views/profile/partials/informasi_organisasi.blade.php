@@ -1,15 +1,7 @@
 <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">Informasi Organisasi</h3>
 <hr class="mb-2 divide-y divide-gray-200">
 @foreach ($informasi_organisasi as $data)
-    <div class="grid grid-cols-6 gap-6">
-        <div class="col-span-6 sm:col-span-3">
-            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
-            <input type="text" name="name" id="name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="PR IPNU Kelurahan Bajang" value="{{ $data->name }}">
-        </div>
-        <div class="col-span-6 sm:col-span-3">
-            <label for="contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact</label>
-            <input type="number" name="contact" id="contact" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="rizalnkri01@gmail.com" value="{{ $data->contact }}">
-        </div>
+    <div class="grid grid-cols-6 gap-6 mt-5">
         <div class="col-span-6 sm:col-span-3">
             <label for="kondisi_organisasi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kondisi Organisasi</label>
             <select id="kondisi_organisasi" name="kondisi_organisasi" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">

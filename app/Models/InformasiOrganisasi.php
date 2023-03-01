@@ -11,8 +11,6 @@ class InformasiOrganisasi extends Model
 
     protected $fillable = [
         'user_id',
-        'name',
-        'contact',
         'kondisi_organisasi',
         'no_sp',
         'sekretariatan',

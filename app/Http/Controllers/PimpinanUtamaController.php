@@ -49,7 +49,7 @@ class PimpinanUtamaController extends Controller
 
         $pimpinanUtama->save();
 
-        return redirect()->back()->with('success', 'Data berhasil diupdate.');
+        return redirect()->back()->with('update', 'Data berhasil diupdate.');
     }
 
     public function destroy($id)
@@ -57,6 +57,6 @@ class PimpinanUtamaController extends Controller
         $pimpinanUtama = PimpinanUtama::findOrFail($id);
         $pimpinanUtama->delete();
 
-        return redirect()->back()->with('success', 'Data berhasil dihapus.');
+        return redirect()->back()->with('delete', 'Data berhasil dihapus.');
     }
 }
