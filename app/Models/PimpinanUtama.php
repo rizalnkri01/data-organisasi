@@ -22,4 +22,5 @@ class PimpinanUtama extends Model
     {
         return $this->belongsTo(PimpinanKedua::class);
     }
+
 }

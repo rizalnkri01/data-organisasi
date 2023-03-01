@@ -25,6 +25,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/media_social', [MediaSocialController::class, 'index'])->name('media_social');
+
 Route::get('/kecamatan', [PimpinanUtamaController::class, 'index'])->name('kecamatan');
 Route::post('/kecamatan', [PimpinanUtamaController::class, 'store'])->name('kecamatan.store');
 Route::patch('/kecamatan/{id}', [PimpinanUtamaController::class, 'update'])->name('kecamatan.update');

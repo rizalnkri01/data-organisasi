@@ -8,32 +8,40 @@ use Illuminate\Support\Facades\Auth;
 
 class MediaSocialController extends Controller
 {
-    public function update(Request $request)
+    public function index(Request $request)
     {
-        $validated = $request->validate([
-            'facebook' => ['required', 'string', 'max:255'],
-            'instagram' => ['required', 'string', 'max:255'],
-            'youtube' => ['required', 'string', 'max:255'],
-            'tiktok' => ['required', 'string', 'max:255'],
-            'website' => ['required', 'string', 'max:255'],
+        $title = 'Media Social';
+        $query = $request->query('name');
+
+        if ($query) {
+            $pagination = MediaSocial::with('user')
+                ->whereHas('user', function ($q) use ($query) {
+                    $q->where('name', 'like', '%' . $query . '%');
+                })
+                ->where(function ($q) {
+                    $q->whereNotNull('facebook')
+                    ->orWhereNotNull('instagram')
+                    ->orWhereNotNull('youtube')
+                    ->orWhereNotNull('tiktok')
+                    ->orWhereNotNull('website');
+                })
+                ->orderBy('id', 'desc')
+                ->paginate(10);
+        } else {
+            $pagination = MediaSocial::with('user')
+                ->where(function ($q) {
+                    $q->whereNotNull('facebook')
+                    ->orWhereNotNull('instagram');
+                })
+                ->orderBy('id', 'desc')
+                ->paginate(10);
+        }
+
+        return view('media_social.index', [
+            'title' => $title,
+            'media_social' => $pagination,
+            'query' => $query,
         ]);
-
-        $user = Auth::user();
-
-        // Mengambil data pimpinan kedua yang terkait dengan user yang sedang login
-        $media_social = MediaSocial::where('user_id', $user->id)->first();
-
-        $media_social->fill([
-            'facebook' => $validated['facebook'],
-            'instagram' => $validated['instagram'],
-            'youtube' => $validated['youtube'],
-            'tiktok' => $validated['tiktok'],
-            'website' => $validated['website'],
-        ]);
-    
-        // Simpan perubahan ke database
-        $media_social->save();
-
-        return back()->with('success', 'Data Berhasil Diubah');
     }
+
 }

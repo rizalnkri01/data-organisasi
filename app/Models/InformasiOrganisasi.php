@@ -34,4 +34,9 @@ class InformasiOrganisasi extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function media_social()
+    {
+        return $this->belongsTo(MediaSocial::class);
+    }
 }
