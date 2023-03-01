@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\MediaSocialController;
+use App\Http\Controllers\PimpinanKeduaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::put('/profile', [ProfileController::class, 'update_2'])->name('profile_2.update');
 });
 
 require __DIR__.'/auth.php';

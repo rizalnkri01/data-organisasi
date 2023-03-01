@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\InformasiOrganisasi;
+use App\Models\MediaSocial;
+use App\Models\PimpinanKedua;
+use App\Models\PimpinanUtama;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -20,7 +24,9 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        return view('auth.register', [
+            'pimpinan_utama' => PimpinanUtama::all(),
+        ]);
     }
 
     /**
@@ -34,6 +40,8 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+
+            'pimpinan_utama_id' => ['required', 'integer'],
         ]);
 
         $user = User::create([
@@ -41,6 +49,22 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        $pimpinan_kedua = PimpinanKedua::create([
+            'user_id' => $user->id,
+            'pimpinan_utama_id' => $request->pimpinan_utama_id,
+        ]);
+        $pimpinan_kedua->user()->associate($user);
+
+        $media_social = MediaSocial::create([
+            'user_id' => $user->id,
+        ]);
+        $media_social->user()->associate($user);
+
+        $informasi_organisasi = InformasiOrganisasi::create([
+            'user_id' => $user->id,
+        ]);
+        $informasi_organisasi->user()->associate($user);
 
         event(new Registered($user));
 

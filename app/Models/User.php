@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'image',
+        'is_admin',
     ];
 
     /**
@@ -41,4 +43,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function pimpinan_utama()
+    {
+        return $this->belongsTo(PimpinanUtama::class);
+    }
+
+    public function pimpinan_kedua()
+    {
+        return $this->belongsTo(PimpinanKedua::class);
+    }
 }
