@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MediaSocialController;
 use App\Http\Controllers\PimpinanKeduaController;
+use App\Http\Controllers\PimpinanUtamaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,11 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/kecamatan', [PimpinanUtamaController::class, 'index'])->name('kecamatan');
+Route::post('/kecamatan', [PimpinanUtamaController::class, 'store'])->name('kecamatan.store');
+Route::patch('/kecamatan/{id}', [PimpinanUtamaController::class, 'update'])->name('kecamatan.update');
+Route::delete('/kecamatan/{id}', [PimpinanUtamaController::class, 'destroy'])->name('kecamatan.destroy');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
