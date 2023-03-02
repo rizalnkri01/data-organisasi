@@ -23,4 +23,8 @@ class PimpinanUtama extends Model
         return $this->belongsTo(PimpinanKedua::class);
     }
 
+    public function informasi_organisasi()
+    {
+        return $this->belongsTo(InformasiOrganisasi::class);
+    }
 }

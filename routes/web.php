@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\KetuaDanKomandanController;
+use App\Http\Controllers\KondisiOrganisasiController;
 use App\Http\Controllers\MediaSocialController;
 use App\Http\Controllers\PimpinanKeduaController;
 use App\Http\Controllers\ManagementPimpinanUtamaController;
+use App\Http\Controllers\MasaKhidmatController;
 use App\Http\Controllers\PimpinanUtamaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +32,13 @@ Route::get('/dashboard', function () {
 Route::get('/media_social', [MediaSocialController::class, 'index'])->name('media_social');
 Route::get('/kecamatan', [PimpinanUtamaController::class, 'index'])->name('kecamatan');
 Route::get('/ranting', [PimpinanKeduaController::class, 'index'])->name('ranting');
+
+Route::get('/ketua-dan-komandan', [KetuaDanKomandanController::class, 'index'])->name('ketua-dan-komandan');
+Route::get('/masa-khidmat', [MasaKhidmatController::class, 'index'])->name('masa-khidmat');
+
+Route::get('/kondisi-organisasi/baik', [KondisiOrganisasiController::class, 'baik'])->name('kondisi-organisasi.baik');
+Route::get('/kondisi-organisasi/kurang-baik', [KondisiOrganisasiController::class, 'kurang_baik'])->name('kondisi-organisasi.kurang-baik');
+Route::get('/kondisi-organisasi/tidak-baik', [KondisiOrganisasiController::class, 'tidak_baik'])->name('kondisi-organisasi.tidak-baik');
 
 Route::get('/management-kecamatan', [ManagementPimpinanUtamaController::class, 'index'])->name('management-kecamatan');
 Route::post('/management-kecamatan', [ManagementPimpinanUtamaController::class, 'store'])->name('management-kecamatan.store');

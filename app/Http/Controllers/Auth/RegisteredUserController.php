@@ -65,8 +65,10 @@ class RegisteredUserController extends Controller
 
         $informasi_organisasi = InformasiOrganisasi::create([
             'user_id' => $user->id,
+            'pimpinan_utama_id' => $request->pimpinan_utama_id,
         ]);
-        $informasi_organisasi->user()->associate($user);
+        $informasi_organisasi->pimpinan_utama_id = $pimpinan_kedua->pimpinan_utama_id;
+        $informasi_organisasi->save();
 
         event(new Registered($user));
 

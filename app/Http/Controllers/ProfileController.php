@@ -64,6 +64,11 @@ class ProfileController extends Controller
         $pimpinan_kedua->fill($request->only('name_pimpinan_kedua'));
         $pimpinan_kedua->save();
 
+        // Update informasi organisasi
+        $informasi_organisasi = InformasiOrganisasi::where('user_id', $request->user()->id)->first();
+        $informasi_organisasi->pimpinan_kedua_id = $pimpinan_kedua->id;
+        $informasi_organisasi->save();
+
         return Redirect::route('profile.edit')->with('success', 'Data Berhasil Diubah');
     }
 

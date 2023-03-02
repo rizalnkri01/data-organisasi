@@ -11,6 +11,7 @@ class InformasiOrganisasi extends Model
 
     protected $fillable = [
         'user_id',
+        'pimpinan_kedua_id',
         'kondisi_organisasi',
         'no_sp',
         'sekretariatan',
@@ -36,5 +37,14 @@ class InformasiOrganisasi extends Model
     public function media_social()
     {
         return $this->belongsTo(MediaSocial::class);
+    }
+
+    public function pimpinan_utama()
+    {
+        return $this->belongsTo(PimpinanUtama::class);
+    }
+    public function pimpinan_kedua()
+    {
+        return $this->belongsTo(PimpinanKedua::class);
     }
 }
