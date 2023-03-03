@@ -18,7 +18,6 @@
         </li>
         </ol>
     </nav>  
-    
     <!-- Pencarian -->
     @include('pimpinan_kedua.partials.pencarian')
     

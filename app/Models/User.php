@@ -24,6 +24,7 @@ class User extends Authenticatable
         'password',
         'image',
         'is_admin',
+        'role_pimpinan_utama',
     ];
 
     /**
@@ -47,7 +48,7 @@ class User extends Authenticatable
 
     public function pimpinan_utama()
     {
-        return $this->belongsTo(PimpinanUtama::class);
+        return $this->belongsTo(PimpinanUtama::class, 'role_pimpinan_utama');
     }
 
     public function pimpinan_kedua()

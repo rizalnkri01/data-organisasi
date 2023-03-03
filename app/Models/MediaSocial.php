@@ -11,6 +11,8 @@ class MediaSocial extends Model
 
     protected $fillable = [
         'user_id',
+        'pimpinan_utama_id',
+        'pimpinan_kedua_id',
         'facebook',
         'instagram',
         'youtube',
@@ -21,5 +23,15 @@ class MediaSocial extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function pimpinan_utama()
+    {
+        return $this->belongsTo(PimpinanUtama::class);
+    }
+
+    public function pimpinan_kedua()
+    {
+        return $this->belongsTo(PimpinanKedua::class);
     }
 }

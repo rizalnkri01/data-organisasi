@@ -44,17 +44,17 @@ class ProfileController extends Controller
             $request->user()->email_verified_at = null;
         }
 
-        // Hapus avatar lama jika ada
-        if ($request->hasFile('image') && $request->oldImage) {
-            Storage::delete('public/profile/' . $request->oldImage);
-        }
-
         // Simpan avatar baru
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $avatarName = time() . '_' . $image->getClientOriginalName();
-            $avatarPath = $image->storeAs('public/profile', $avatarName);
-            $request->user()->image = $avatarName;
+            $file = $request->file('image');
+            $file_name = uniqid() . '_' . $file->getClientOriginalName();
+            $file->storeAs('profile', $file_name);
+
+            Storage::delete('profile/' . $request->oldImage);
+
+            $request->user()->image = $file_name;
+        } else {
+            $request->user()->image = $request->oldImage;
         }
 
         $request->user()->save();
@@ -66,6 +66,11 @@ class ProfileController extends Controller
 
         // Update informasi organisasi
         $informasi_organisasi = InformasiOrganisasi::where('user_id', $request->user()->id)->first();
+        $informasi_organisasi->pimpinan_kedua_id = $pimpinan_kedua->id;
+        $informasi_organisasi->save();
+
+        // Update Media Social
+        $informasi_organisasi = MediaSocial::where('user_id', $request->user()->id)->first();
         $informasi_organisasi->pimpinan_kedua_id = $pimpinan_kedua->id;
         $informasi_organisasi->save();
 
@@ -132,9 +137,8 @@ class ProfileController extends Controller
         PimpinanKedua::where('user_id', $user->id)->delete();
 
         // hapus gambar dari profil
-        if($user->image) {
-            Storage::delete($user->image);
-        }
+        Storage::delete('profile/' . $user->image);     
+        
 
         Auth::logout();
 

@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('media_socials', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
+            $table->foreignId('pimpinan_utama_id')->nullable();
+            $table->foreignId('pimpinan_kedua_id')->nullable();
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
             $table->string('youtube')->nullable();

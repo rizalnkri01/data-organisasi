@@ -5,6 +5,7 @@ use App\Http\Controllers\KondisiOrganisasiController;
 use App\Http\Controllers\MediaSocialController;
 use App\Http\Controllers\PimpinanKeduaController;
 use App\Http\Controllers\ManagementPimpinanUtamaController;
+use App\Http\Controllers\ManagementUserController;
 use App\Http\Controllers\MasaKhidmatController;
 use App\Http\Controllers\PimpinanUtamaController;
 use App\Http\Controllers\ProfileController;
@@ -22,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 Route::get('/dashboard', function () {
@@ -30,7 +31,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/media_social', [MediaSocialController::class, 'index'])->name('media_social');
-Route::get('/kecamatan', [PimpinanUtamaController::class, 'index'])->name('kecamatan');
 Route::get('/ranting', [PimpinanKeduaController::class, 'index'])->name('ranting');
 
 Route::get('/ketua-dan-komandan', [KetuaDanKomandanController::class, 'index'])->name('ketua-dan-komandan');
@@ -40,10 +40,17 @@ Route::get('/kondisi-organisasi/baik', [KondisiOrganisasiController::class, 'bai
 Route::get('/kondisi-organisasi/kurang-baik', [KondisiOrganisasiController::class, 'kurang_baik'])->name('kondisi-organisasi.kurang-baik');
 Route::get('/kondisi-organisasi/tidak-baik', [KondisiOrganisasiController::class, 'tidak_baik'])->name('kondisi-organisasi.tidak-baik');
 
-Route::get('/management-kecamatan', [ManagementPimpinanUtamaController::class, 'index'])->name('management-kecamatan');
-Route::post('/management-kecamatan', [ManagementPimpinanUtamaController::class, 'store'])->name('management-kecamatan.store');
-Route::patch('/management-kecamatan/{id}', [ManagementPimpinanUtamaController::class, 'update'])->name('management-kecamatan.update');
-Route::delete('/management-kecamatan/{id}', [ManagementPimpinanUtamaController::class, 'destroy'])->name('management-kecamatan.destroy');
+Route::middleware('admin')->group(function () {
+    Route::get('/kecamatan', [PimpinanUtamaController::class, 'index'])->name('kecamatan');
+    
+    Route::get('/management-kecamatan', [ManagementPimpinanUtamaController::class, 'index'])->name('management-kecamatan');
+    Route::post('/management-kecamatan', [ManagementPimpinanUtamaController::class, 'store'])->name('management-kecamatan.store');
+    Route::patch('/management-kecamatan/{id}', [ManagementPimpinanUtamaController::class, 'update'])->name('management-kecamatan.update');
+    Route::delete('/management-kecamatan/{id}', [ManagementPimpinanUtamaController::class, 'destroy'])->name('management-kecamatan.destroy');
+
+    Route::get('/management-user', [ManagementUserController::class, 'index'])->name('management-user');
+    Route::patch('/management-user/{id}', [ManagementUserController::class, 'update'])->name('management-user.update');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
