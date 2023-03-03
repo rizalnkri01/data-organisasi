@@ -7,11 +7,16 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
+        <link rel="shortcut icon" href="/image/favicon.png" type="image/x-icon">
+        <link rel="shortcut icon" href="/image/favicon.png" type="image/png">
+
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
         <!-- Scripts -->
+        {{-- <link rel="stylesheet" href="/build/assets/app-cd37b9f9.css">
+        <script src="/build/assets/app-cd37b9f9.js"></script> --}}
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <script>
