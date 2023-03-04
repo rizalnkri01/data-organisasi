@@ -32,7 +32,7 @@
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
             <div>
                 <a href="/">
-                    <img class="w-30 h-20 fill-current" src="/build/assets/logo.png" alt="Pelajar NU">
+                    <img class="w-30 h-20 fill-current" src="/image/logo.png" alt="Pelajar NU">
                 </a>
             </div>
 
